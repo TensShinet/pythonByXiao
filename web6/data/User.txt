@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "username": "gua",
+    "password": "456",
+    "permission": 1,
+    "created_time": "",
+    "updated_time": ""
+  },
+  {
+    "id": 2,
+    "username": "gua1",
+    "password": "456",
+    "permission": 1,
+    "created_time": "",
+    "updated_time": ""
+  }
+]
