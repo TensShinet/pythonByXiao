@@ -61,12 +61,3 @@ def login():
         # 设置 cookie 有效期为 永久
         session.permanent = True
         return redirect(url_for('topic.index'))
-
-
-@main.route('/profile')
-def profile():
-    u = current_user()
-    if u is None:
-        return redirect(url_for('.index'))
-    else:
-        return render_template('profile.html', user=u)

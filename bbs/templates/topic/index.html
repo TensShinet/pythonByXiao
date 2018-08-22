@@ -28,18 +28,23 @@
     <div id="content">
         <div class="panel">
             <div class="header">
-            <a href="/topic?tab=0"
-                    class="topic-tab current-tab">全部</a>
-            {% for b in bs %}
-            <a href="/topic?tab={{ b.board_id }}"
-                    class="topic-tab current-tab">{{ b.title }}</a>
-            {% endfor %}
+                <a href="/topic?tab=0"
+                   class="topic-tab current-tab">全部</a>
+                {% for b in bs %}
+                <a href="/topic?tab={{ b.board_id }}"
+                   class="topic-tab current-tab">{{ b.title }}</a>
+                {% endfor %}
             </div>
             <div class="inner post">
                 <div class="topic_list">
                     {% for t in ms %}
                     <div class="cell">
                         <div class="topic_title_wrapper">
+                            <a class='last_time pull-right'>
+                                <img class="user_small_avatar"
+                                     src="/static/userportraits/{{ t.portrait }}?v=4&amp;s=120">
+                                <span class="last_active_time">5 天前</span>
+                            </a>
                             <a class="topic_title" href="{{ url_for('topic.detail', topic_id=t.id) }}">
                                 {{ t.title }}
                             </a>
@@ -57,6 +62,7 @@
     var editor = new Editor();
     editor.render($('.editor')[0]);
   })();
+
 
 </script>
 </body>
