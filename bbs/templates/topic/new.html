@@ -27,7 +27,7 @@
                         <select name="board_id" id="board" required>
                             <option value="">请选择</option>
                             {% for b in bs %}
-                            <option value="{{ b.id }}">{{ b.title }}</option>
+                            <option value="{{ b.board_id }}">{{ b.title }}</option>
                             {% endfor %}
                         </select>
 

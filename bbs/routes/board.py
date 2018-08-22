@@ -23,6 +23,7 @@ def index():
 def add():
     form = request.form
     u = current_user()
-    m = Board.new(form)
-    return redirect(url_for("topic.index", ))
+    b_len = len(Board.all())
+    m = Board.new(form, board_id=b_len+1)
+    return redirect(url_for("topic.index", bs=m))
 

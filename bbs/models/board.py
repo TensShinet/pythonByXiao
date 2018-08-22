@@ -8,3 +8,4 @@ class Board(Model):
         self.title = form.get('title', '')
         self.ct = int(time.time())
         self.ut = self.ct
+        self.board_id = None

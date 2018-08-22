@@ -31,6 +31,7 @@ class Model(object):
     user = User()
     user.db_path() 返回 User.txt
     """
+
     @classmethod
     def db_path(cls):
         """

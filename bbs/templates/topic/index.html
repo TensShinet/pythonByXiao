@@ -28,10 +28,10 @@
     <div id="content">
         <div class="panel">
             <div class="header">
-            <a href="/topic?tab=all"
+            <a href="/topic?tab=0"
                     class="topic-tab current-tab">全部</a>
             {% for b in bs %}
-            <a href="/topic?tab={{ b.id }}"
+            <a href="/topic?tab={{ b.board_id }}"
                     class="topic-tab current-tab">{{ b.title }}</a>
             {% endfor %}
             </div>

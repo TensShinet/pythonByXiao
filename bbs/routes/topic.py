@@ -18,7 +18,7 @@ main = Blueprint('topic', __name__)
 def index():
     query = request.args
     board_id = int(query.get('tab', -1))
-    if board_id == -1:
+    if board_id == -1 or board_id == 0:
         ms = Topic.all()
     else:
         ms = Topic.find_all(board_id=board_id)
@@ -37,6 +37,7 @@ def add():
     form = request.form
     u = current_user()
     m = Topic.new(form, user_id=u.id)
+    print("wori", form.get('board_id', "no"))
     return redirect(url_for(".detail", topic_id=m.id))
 
 
