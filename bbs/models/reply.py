@@ -1,6 +1,6 @@
 import time
 from models import Model
-
+from models.monmod import Monmod
 
 class Reply(Model):
     def __init__(self, form):
@@ -14,3 +14,21 @@ class Reply(Model):
         from .user import User
         u = User.find(self.user_id)
         return u
+
+
+class Reply(Monmod):
+    __fields__ = Monmod.__fields__ + [
+        ('content', str, ''),
+        ('topic_id', int, -1),
+        ('receiver_id', int, -1),
+        ('user_id', int, -1)
+    ]
+
+    def user(self):
+        from .user import User
+        u = User.find(self.user_id)
+        return u
+
+    def set_user_id(self, user_id):
+        self.user_id = user_id
+        self.save()
