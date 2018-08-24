@@ -23,6 +23,7 @@ def index():
     else:
         ms = Topic.find_all(board_id=board_id)
     bs = Board.all()
+    # print("ms[0] debug", ms[0].replies)
     return render_template("topic/index.html", ms=ms, bs=bs)
 
 

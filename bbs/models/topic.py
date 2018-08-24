@@ -44,8 +44,8 @@ class Topic(Monmod):
 
     def replies(self):
         from .reply import Reply
-        ms = Reply.find_all(topic_id=self.id)
-        return ms
+        rs = Reply.find_all(topic_id=self.id)
+        return rs
 
     def board(self):
         from .board import Board

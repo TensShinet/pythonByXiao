@@ -52,7 +52,7 @@ class Monmod(object):
         return cls.find_one(**kwargs) is not None
 
     def mongos(self, name):
-        return monmod.db[name]._find()
+        return monmod.db[name].find()
 
     def __repr__(self):
         classname = self.__class__.__name__
@@ -127,6 +127,7 @@ class Monmod(object):
         # 所以在这里强行加上
         # 以后洗掉 db 的数据后应该删掉这一句
         m.type = cls.__name__.lower()
+        print("type class", m.type)
         return m
 
     @classmethod
@@ -145,6 +146,10 @@ class Monmod(object):
         # TODO 过滤删除的元素
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
+        # query = {
+        #     'id': 1
+        # }
+        # print("debug name", monmod.db[name].find(query), kwargs["id"])
         ds = monmod.db[name].find(kwargs)
         if sort is not None:
             ds = ds.sort(sort)
@@ -154,16 +159,13 @@ class Monmod(object):
     @classmethod
     def _find_raw(cls, **kwargs):
         name = cls.__name__
-        ds = monmod.db[name]._find(kwargs)
+        ds = monmod.db[name].find(kwargs)
         return list(ds)
 
     @classmethod
     def find_all(cls, **kwargs):
-        name = cls.__name__
-        ds = monmod.db[name].find(**kwargs)
-        if ds is None:
-            return None
-        return list(ds)
+        return cls._find(**kwargs)
+
 
     @classmethod
     def _clean_field(cls, source, target):
@@ -246,7 +248,7 @@ class Monmod(object):
     def data_count(self, cls):
         """
         神奇的函数，查看用户发表的评论数
-        u.date_count(Comment
+        u.date_count(Comment)
         """
         name = cls.__name__
         # TODO 这里应该用 tyoe 替代
@@ -254,5 +256,18 @@ class Monmod(object):
         query = {
             fk: self.id,
         }
-        count = monmod.db[name]._find(query).count()
+        count = monmod.db[name].find(query).count()
         return count
+
+
+def test():
+    query = {
+        "id": 1,
+    }
+    query = dict(
+        id=1,
+    )
+    u = monmod.db["User"].find(query)
+    print("test u is", u)
+
+# test()
